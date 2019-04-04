@@ -1,0 +1,144 @@
+#include <iostream>
+#include <string>
+#include <limits>
+
+bool AskToPlayAgain();
+void PrintIntro();
+int GetValidInput();
+void Addition(float& a, float& b, float& c);
+void Subtraction(float& a, float& b, float& c);
+void Multiplictaion(float& a, float& b, float& c);
+void Division(float& a, float& b, float& c);
+void EnterNumbers(float& a, float& b);
+
+int main()
+{
+	bool bPlayAgain = false;
+	float numberOne = 0, numberTwo = 0, numberThree;
+	do
+	{
+		PrintIntro();
+		int Input = GetValidInput();
+		if (Input == 1)
+		{
+			std::cout << "You have chosen addition!\n\n";
+			EnterNumbers(numberOne, numberTwo);
+			Addition(numberOne, numberTwo, numberThree);
+			//break;
+		}
+		else if (Input == 2)
+		{
+			std::cout << "You have chosen subtraction\n\n";
+			EnterNumbers(numberOne, numberTwo);
+			Subtraction(numberOne, numberTwo, numberThree);
+			//break;
+		}
+		if (Input == 3)
+		{
+			std::cout << "You have chosen multiplication\n\n";
+			EnterNumbers(numberOne, numberTwo);
+			Multiplictaion(numberOne, numberTwo, numberThree);
+			//break;
+		}
+		if (Input == 4)
+		{
+			std::cout << "You have chosen division\n\n";
+			EnterNumbers(numberOne, numberTwo);
+			Division(numberOne, numberTwo, numberThree);
+			//break;
+		}
+		bPlayAgain = AskToPlayAgain();
+	} while (bPlayAgain);
+	return 0;
+}
+
+bool AskToPlayAgain()
+{
+	std::cout << "\n\tDo you want to calculate something else? (Yes/No): ";
+	std::string Response = "";
+	std::getline(std::cin, Response);
+
+	return (Response[0] == 'y') || (Response[0] == 'Y');
+}
+
+void PrintIntro()
+{
+	std::cout << "Welcome to my Calculator app\n\n";
+	std::cout << "Option		\tInput\n";
+	std::cout << "-----------------------------\n";
+	std::cout << "Addition		1\n";
+	std::cout << "Subtraction   \t\t2\n";
+	std::cout << "Multiplication\t\t3\n";
+	std::cout << "Division		4\n\n";
+}
+
+int GetValidInput()
+{
+	int Input;
+	std::cout << "Please enter a value between 1 and 4 : ";
+	//std::cin >> Input;
+	while (!(std::cin >> Input) || Input < 1 || Input > 4)
+	{
+		std::cout << "Please enter a value between 1 and 4 : ";
+		std::cin.clear();
+		std::cout << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return Input;
+}
+
+void EnterNumbers(float& a, float& b )
+{
+	std::cout << "Please enter the first value :";
+	std::cout << std::endl;
+	//std::cin >> a;
+	while (!(std::cin >> a) || a < 0 || a > 100000000000000)
+	{
+		std::cout << "Please enter the first value :";
+		std::cin.clear();
+		std::cout << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+	std::cout << "Please enter the second value :";
+	std::cout << std::endl;
+	//std::cin >> b;
+	while (!(std::cin >> b) || b < 0 || b > 100000000000000)
+	{
+		std::cout << "Please enter the second value :";
+		std::cin.clear();
+		std::cout << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void Addition(float& a, float& b, float& c)
+{
+	c = a + b;
+	std::cout << "The sum of " << a << " + " << b << " = " << c << std::endl;
+}
+
+void Subtraction(float& a, float& b, float& c)
+{
+	c = a - b;
+	std::cout << "The total of " << a << " - " << b << " = " << c << std::endl;
+}
+
+void Multiplictaion(float& a, float& b, float& c)
+{
+	c = a * b;
+	std::cout << "The total of " << a << " * " << b << " = " << c << std::endl;
+}
+
+void Division(float& a, float& b, float& c)
+{
+	int d;
+	c = a / b;
+	std::cout << "The total of " << a << " / " << b << " = " << c << std::endl;
+}
